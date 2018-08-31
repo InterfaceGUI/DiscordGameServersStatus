@@ -77,6 +77,51 @@ Namespace My
                 Me("channel") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property ServersName() As Global.System.Collections.Specialized.StringCollection
+            Get
+                Return CType(Me("ServersName"),Global.System.Collections.Specialized.StringCollection)
+            End Get
+            Set
+                Me("ServersName") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property Serversip() As Global.System.Collections.Specialized.StringCollection
+            Get
+                Return CType(Me("Serversip"),Global.System.Collections.Specialized.StringCollection)
+            End Get
+            Set
+                Me("Serversip") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property ServersGame() As Global.System.Collections.Specialized.StringCollection
+            Get
+                Return CType(Me("ServersGame"),Global.System.Collections.Specialized.StringCollection)
+            End Get
+            Set
+                Me("ServersGame") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property serverCount() As Integer
+            Get
+                Return CType(Me("serverCount"),Integer)
+            End Get
+            Set
+                Me("serverCount") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class Form1
+Partial Class DGSS
     Inherits System.Windows.Forms.Form
 
     'Form 覆寫 Dispose 以清除元件清單。
@@ -29,6 +29,9 @@ Partial Class Form1
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button5 = New System.Windows.Forms.Button()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Button6 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -102,18 +105,48 @@ Partial Class Form1
         Me.Button2.Text = "伺服器列表"
         Me.Button2.UseVisualStyleBackColor = True
         '
-        'Form1
+        'Button5
+        '
+        Me.Button5.Location = New System.Drawing.Point(323, 44)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(98, 51)
+        Me.Button5.TabIndex = 2
+        Me.Button5.Text = "Button5"
+        Me.Button5.UseVisualStyleBackColor = True
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(283, 120)
+        Me.TextBox1.Multiline = True
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(225, 191)
+        Me.TextBox1.TabIndex = 3
+        '
+        'Button6
+        '
+        Me.Button6.Location = New System.Drawing.Point(429, 44)
+        Me.Button6.Name = "Button6"
+        Me.Button6.Size = New System.Drawing.Size(98, 51)
+        Me.Button6.TabIndex = 2
+        Me.Button6.Text = "Button5"
+        Me.Button6.UseVisualStyleBackColor = True
+        '
+        'DGSS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 24.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(539, 337)
+        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.Button6)
+        Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.GroupBox1)
         Me.Font = New System.Drawing.Font("微軟正黑體", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
         Me.Margin = New System.Windows.Forms.Padding(6)
-        Me.Name = "Form1"
-        Me.Text = "Form1"
+        Me.Name = "DGSS"
+        Me.Text = "DiscordGameServersStatus"
         Me.GroupBox1.ResumeLayout(False)
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -124,4 +157,7 @@ Partial Class Form1
     Friend WithEvents Button2 As Button
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
+    Friend WithEvents Button5 As Button
+    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents Button6 As Button
 End Class

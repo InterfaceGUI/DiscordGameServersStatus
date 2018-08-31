@@ -2,12 +2,36 @@
 Imports System.Net
 Imports System.Net.Sockets
 Imports System.Text
-Imports System.Text.RegularExpressions
-Imports Newtonsoft
 Imports Newtonsoft.Json
 Imports Newtonsoft.Json.Linq
 
-Namespace Gaming.Minecraft
+Namespace Server.Ping
+    Public NotInheritable Class PingServer
+
+        Public Property IsOnline As Boolean
+
+        Private Sub New(ByVal isonlone As Boolean)
+            Me.IsOnline = isonlone
+        End Sub
+
+        Public Shared Function Ping(ByVal sIP As String, ByVal nPort As Integer) As PingServer
+
+            'Dim endPoint As New IPEndPoint(IPAddress.Parse(Dns.GetHostEntry(sIP).AddressList(0).ToString), nPort)
+
+            Dim endPoint As New IPEndPoint(IPAddress.Parse(sIP), nPort)
+            Try
+                Dim sclient As Socket = New Socket(AddressFamily.InterNetwork， SocketType.Stream， ProtocolType.Tcp)
+                Dim a = sclient.BeginConnect(endPoint, Nothing, Nothing)
+
+                Return New PingServer(a.AsyncWaitHandle.WaitOne(1000, True))
+            Catch ex As Exception
+                Return New PingServer(False)
+            End Try
+        End Function
+
+    End Class
+
+
 
     Public NotInheritable Class MinecraftServerInfo
 

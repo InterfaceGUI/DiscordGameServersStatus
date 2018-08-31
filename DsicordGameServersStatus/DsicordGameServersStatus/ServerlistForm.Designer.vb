@@ -23,9 +23,12 @@ Partial Class ServerlistForm
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.button_Add = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
@@ -42,23 +45,6 @@ Partial Class ServerlistForm
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "伺服器列表"
         '
-        'Button3
-        '
-        Me.Button3.Location = New System.Drawing.Point(354, 360)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(94, 40)
-        Me.Button3.TabIndex = 1
-        Me.Button3.Text = "確定"
-        Me.Button3.UseVisualStyleBackColor = True
-        '
-        'Panel1
-        '
-        Me.Panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.Panel1.Location = New System.Drawing.Point(0, 0)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(298, 1400)
-        Me.Panel1.TabIndex = 2
-        '
         'Panel2
         '
         Me.Panel2.AutoScroll = True
@@ -69,11 +55,58 @@ Partial Class ServerlistForm
         Me.Panel2.Size = New System.Drawing.Size(318, 347)
         Me.Panel2.TabIndex = 2
         '
+        'Panel1
+        '
+        Me.Panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.Panel1.Location = New System.Drawing.Point(0, 0)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(298, 1400)
+        Me.Panel1.TabIndex = 2
+        '
+        'Button3
+        '
+        Me.Button3.Location = New System.Drawing.Point(354, 360)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(94, 40)
+        Me.Button3.TabIndex = 1
+        Me.Button3.Text = "確定"
+        Me.Button3.UseVisualStyleBackColor = True
+        '
+        'Panel3
+        '
+        Me.Panel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.Panel3.Location = New System.Drawing.Point(454, 29)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(298, 1400)
+        Me.Panel3.TabIndex = 2
+        Me.Panel3.Visible = False
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(354, 75)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(94, 40)
+        Me.Button1.TabIndex = 1
+        Me.Button1.Text = "減少欄位"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'button_Add
+        '
+        Me.button_Add.Location = New System.Drawing.Point(354, 29)
+        Me.button_Add.Name = "button_Add"
+        Me.button_Add.Size = New System.Drawing.Size(94, 40)
+        Me.button_Add.TabIndex = 1
+        Me.button_Add.Text = "增加欄位"
+        Me.button_Add.UseVisualStyleBackColor = True
+        '
         'ServerlistForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 24.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(454, 412)
+        Me.ClientSize = New System.Drawing.Size(460, 412)
+        Me.Controls.Add(Me.Panel3)
+        Me.Controls.Add(Me.button_Add)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.GroupBox1)
         Me.Font = New System.Drawing.Font("微軟正黑體", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
@@ -90,4 +123,7 @@ Partial Class ServerlistForm
     Friend WithEvents Button3 As Button
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Panel2 As Panel
+    Friend WithEvents Panel3 As Panel
+    Friend WithEvents Button1 As Button
+    Friend WithEvents button_Add As Button
 End Class

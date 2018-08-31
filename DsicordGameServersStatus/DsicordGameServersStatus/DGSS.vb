@@ -1,6 +1,12 @@
 ﻿Imports Discord
 Imports Discord.WebSocket
-Public Class Form1
+Imports System.Collections.Specialized
+Imports System.Net
+Imports System.Net.Sockets
+Imports System.Text
+Imports DsicordGameServersStatus.Server.Ping
+Imports SSQLib
+Public Class DGSS
     Dim Discord As DiscordSocketClient
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Discord = New DiscordSocketClient(New DiscordSocketConfig With {
@@ -17,4 +23,19 @@ Public Class Form1
     Private Sub 伺服器列表_Click(sender As Object, e As EventArgs) Handles Button2.Click
         ServerlistForm.Show()
     End Sub
+
+
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+
+
+        Dim endPoint As New IPEndPoint(IPAddress.Parse("185.38.148.140"), 27015)
+
+        Dim SSQ As SSQL = New SSQL()
+        Dim server As ServerInfo = SSQ.Server(endPoint)
+        TextBox1.Text = server.MaxPlayers
+
+    End Sub
+
+
 End Class
