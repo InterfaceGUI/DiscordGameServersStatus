@@ -6,9 +6,9 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{E0E530F2-7440-4474-8A13-1BF7ADD3592C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>DsicordGameServersStatus.My.MyApplication</StartupObject>
-    <RootNamespace>DsicordGameServersStatus</RootNamespace>
-    <AssemblyName>DsicordGameServersStatus</AssemblyName>
+    <StartupObject>DiscordGameServersStatus.My.MyApplication</StartupObject>
+    <RootNamespace>DiscordGameServersStatus</RootNamespace>
+    <AssemblyName>DiscordGameServersStatus</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
@@ -21,7 +21,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>DsicordGameServersStatus.xml</DocumentationFile>
+    <DocumentationFile>DiscordGameServersStatus.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -31,7 +31,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>DsicordGameServersStatus.xml</DocumentationFile>
+    <DocumentationFile>DiscordGameServersStatus.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>

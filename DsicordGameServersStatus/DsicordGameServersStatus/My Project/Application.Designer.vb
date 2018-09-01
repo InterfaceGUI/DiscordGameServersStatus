@@ -32,7 +32,7 @@ Namespace My
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.DsicordGameServersStatus.DGSS
+            Me.MainForm = Global.DiscordGameServersStatus.DGSS
         End Sub
     End Class
 End Namespace

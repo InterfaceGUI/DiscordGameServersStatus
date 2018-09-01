@@ -4,7 +4,7 @@ Imports System.Collections.Specialized
 Imports System.Net
 Imports System.Net.Sockets
 Imports System.Text
-Imports DsicordGameServersStatus.Server.Ping
+Imports DiscordGameServersStatus.Server.Ping
 Imports SSQLib
 Public Class DGSS
     Dim Discord As DiscordSocketClient
