@@ -1,1 +1,1 @@
-# DsicordGameServersStatus
+# DiscordGameServersStatus
