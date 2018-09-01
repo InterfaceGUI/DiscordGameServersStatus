@@ -8,10 +8,10 @@ Imports System.Runtime.InteropServices
 
 ' 檢閱組件屬性的值
 
-<Assembly: AssemblyTitle("DsicordGameServersStatus")>
+<Assembly: AssemblyTitle("DiscordGameServersStatus")>
 <Assembly: AssemblyDescription("")>
 <Assembly: AssemblyCompany("")>
-<Assembly: AssemblyProduct("DsicordGameServersStatus")>
+<Assembly: AssemblyProduct("DiscordGameServersStatus")>
 <Assembly: AssemblyCopyright("Copyright ©  2018")>
 <Assembly: AssemblyTrademark("")>
 
