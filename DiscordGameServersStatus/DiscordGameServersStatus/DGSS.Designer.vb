@@ -22,16 +22,21 @@ Partial Class DGSS
     '請勿使用程式碼編輯器進行修改。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.Button3 = New System.Windows.Forms.Button()
+        Me.StartButton = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Button6 = New System.Windows.Forms.Button()
+        Me.MainTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.UpdataTimer = New System.Windows.Forms.Timer(Me.components)
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -46,9 +51,11 @@ Partial Class DGSS
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.ComboBox1)
         Me.GroupBox1.Controls.Add(Me.Label2)
+        Me.GroupBox1.Controls.Add(Me.Label3)
         Me.GroupBox1.Controls.Add(Me.Label1)
-        Me.GroupBox1.Controls.Add(Me.Button3)
+        Me.GroupBox1.Controls.Add(Me.StartButton)
         Me.GroupBox1.Controls.Add(Me.Button4)
         Me.GroupBox1.Controls.Add(Me.Button2)
         Me.GroupBox1.Controls.Add(Me.Button1)
@@ -59,33 +66,54 @@ Partial Class DGSS
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "設定"
         '
+        'ComboBox1
+        '
+        Me.ComboBox1.Font = New System.Drawing.Font("微軟正黑體", 13.0!)
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Items.AddRange(New Object() {"10分鐘", "20分鐘", "30分鐘", "60分鐘"})
+        Me.ComboBox1.Location = New System.Drawing.Point(95, 125)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(89, 30)
+        Me.ComboBox1.TabIndex = 3
+        '
         'Label2
         '
         Me.Label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Label2.Location = New System.Drawing.Point(95, 161)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(82, 29)
+        Me.Label2.Size = New System.Drawing.Size(89, 29)
         Me.Label2.TabIndex = 2
+        Me.Label2.Text = "停止"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label3
+        '
+        Me.Label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label3.Location = New System.Drawing.Point(6, 125)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(89, 30)
+        Me.Label3.TabIndex = 2
+        Me.Label3.Text = "廣播間隔"
+        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label1
         '
         Me.Label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label1.Location = New System.Drawing.Point(13, 161)
+        Me.Label1.Location = New System.Drawing.Point(6, 161)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(82, 29)
+        Me.Label1.Size = New System.Drawing.Size(89, 29)
         Me.Label1.TabIndex = 2
         Me.Label1.Text = "狀態:"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'Button3
+        'StartButton
         '
-        Me.Button3.Location = New System.Drawing.Point(6, 193)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(178, 70)
-        Me.Button3.TabIndex = 0
-        Me.Button3.Text = "啟動"
-        Me.Button3.UseVisualStyleBackColor = True
+        Me.StartButton.Location = New System.Drawing.Point(6, 193)
+        Me.StartButton.Name = "StartButton"
+        Me.StartButton.Size = New System.Drawing.Size(178, 70)
+        Me.StartButton.TabIndex = 0
+        Me.StartButton.Text = "啟動"
+        Me.StartButton.UseVisualStyleBackColor = True
         '
         'Button4
         '
@@ -131,16 +159,20 @@ Partial Class DGSS
         Me.Button6.Text = "Button5"
         Me.Button6.UseVisualStyleBackColor = True
         '
+        'MainTimer
+        '
+        '
         'DGSS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 24.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(539, 337)
+        Me.ClientSize = New System.Drawing.Size(223, 337)
         Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.Button6)
         Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.GroupBox1)
         Me.Font = New System.Drawing.Font("微軟正黑體", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Margin = New System.Windows.Forms.Padding(6)
         Me.Name = "DGSS"
         Me.Text = "DiscordGameServersStatus"
@@ -152,7 +184,7 @@ Partial Class DGSS
 
     Friend WithEvents Button1 As Button
     Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents Button3 As Button
+    Friend WithEvents StartButton As Button
     Friend WithEvents Button4 As Button
     Friend WithEvents Button2 As Button
     Friend WithEvents Label1 As Label
@@ -160,4 +192,8 @@ Partial Class DGSS
     Friend WithEvents Button5 As Button
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents Button6 As Button
+    Friend WithEvents MainTimer As Timer
+    Friend WithEvents UpdataTimer As Timer
+    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents Label3 As Label
 End Class

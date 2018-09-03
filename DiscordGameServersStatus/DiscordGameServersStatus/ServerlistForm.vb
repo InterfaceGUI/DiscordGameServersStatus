@@ -145,6 +145,7 @@ Public Class ServerlistForm
         My.Settings.ServersGame = ServersGame
         My.Settings.Serversip = Serversip
         My.Settings.ServersName = ServersName
+        My.Settings.serverCount = serverCount
         My.Settings.Save()
         Me.Dispose()
     End Sub

@@ -122,6 +122,30 @@ Namespace My
                 Me("serverCount") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property Timer() As Integer
+            Get
+                Return CType(Me("Timer"),Integer)
+            End Get
+            Set
+                Me("Timer") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property MessageID() As ULong
+            Get
+                Return CType(Me("MessageID"),ULong)
+            End Get
+            Set
+                Me("MessageID") = value
+            End Set
+        End Property
     End Class
 End Namespace
 
