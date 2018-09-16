@@ -39,6 +39,7 @@ Public Class DGSS
                 Label2.ForeColor = Drawing.Color.Green
                 StartButton.Text = "停止"
                 MainTimer.Enabled = True
+                Button4.Enabled =True
             Catch ex As Exception
                 Start = False
                 Label2.Text = "錯誤"
@@ -46,6 +47,7 @@ Public Class DGSS
                 MsgBox("錯誤訊息：" & vbCrLf & ex.Message, 0 + 16, "啟動BOT失敗")
                 StartButton.Text = "啟動"
                 MainTimer.Enabled = False
+                Button4.Enabled =false
             End Try
         Else
             Await Discord.LogoutAsync
@@ -54,6 +56,7 @@ Public Class DGSS
             Label2.Text = "停止"
             Label2.ForeColor = Drawing.Color.Black
             MainTimer.Enabled = False
+            Button4.Enabled =false
         End If
     End Sub
 
