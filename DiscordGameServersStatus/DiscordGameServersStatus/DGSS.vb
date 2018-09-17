@@ -1,9 +1,6 @@
 ﻿Imports Discord
 Imports Discord.WebSocket
-Imports System.Collections.Specialized
 Imports System.Net
-Imports System.Net.Sockets
-Imports System.Text
 Imports DiscordGameServersStatus.Server.Ping
 Imports SSQLib
 Public Class DGSS
@@ -29,6 +26,7 @@ Public Class DGSS
 
         ComboBox1.SelectedIndex = My.Settings.Timer
         MainTimer.Interval = Time(My.Settings.Timer)
+        Button4.Enabled = False
 
     End Sub
 
@@ -47,7 +45,7 @@ Public Class DGSS
                 Label2.ForeColor = Drawing.Color.Green
                 StartButton.Text = "停止"
                 MainTimer.Enabled = True
-                Button4.Enabled =True
+                Button4.Enabled = True
             Catch ex As Exception
                 Start = False
                 Label2.Text = "錯誤"
@@ -55,7 +53,7 @@ Public Class DGSS
                 MsgBox("錯誤訊息：" & vbCrLf & ex.Message, 0 + 16, "啟動BOT失敗")
                 StartButton.Text = "啟動"
                 MainTimer.Enabled = False
-                Button4.Enabled =false
+                Button4.Enabled = False
             End Try
         Else
             Await Discord.LogoutAsync
@@ -64,7 +62,7 @@ Public Class DGSS
             Label2.Text = "停止"
             Label2.ForeColor = Drawing.Color.Black
             MainTimer.Enabled = False
-            Button4.Enabled =false
+            Button4.Enabled = False
         End If
     End Sub
 
