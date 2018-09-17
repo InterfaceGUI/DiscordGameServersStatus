@@ -12,15 +12,23 @@ Public Class DGSS
     Dim Time() As Int32 = {600000, 1200000, 1800000, 3600000} ' 10分鐘,20分鐘,30分鐘,60分鐘
     Dim msg As Rest.RestUserMessage
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        '取得版本資訊
+        If Deployment.Application.ApplicationDeployment.IsNetworkDeployed Then
+            Label4.Text = "Ver：" & Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString()
+        End If
+        '--------------------------------
+
+        '初始化Dsicord--------
         Discord = New DiscordSocketClient(New DiscordSocketConfig With {
                                           .WebSocketProvider = Net.Providers.WS4Net.WS4NetProvider.Instance,
                                           .UdpSocketProvider = Net.Providers.UDPClient.UDPClientProvider.Instance,
                                           .MessageCacheSize = 20
         })
+        '--------------------------------
 
         ComboBox1.SelectedIndex = My.Settings.Timer
         MainTimer.Interval = Time(My.Settings.Timer)
-
 
     End Sub
 
@@ -59,136 +67,163 @@ Public Class DGSS
 
     Private Function GetServersinfo() As List(Of EmbedFieldBuilder)
         Dim EmbedField As New List(Of EmbedFieldBuilder)
-        For i = 0 To My.Settings.serverCount
-            Dim msg As String = ""
-            Dim ServerName As String = My.Settings.ServersName(i)
-            Dim ip As String = My.Settings.Serversip(i).Split(":")(0)
-            Dim port As String
-            Dim online() As String = {"離線 :negative_squared_cross_mark:", "線上 :white_check_mark:"}
-            Try
-                port = My.Settings.Serversip(i).Split(":")(1)
-            Catch ex As IndexOutOfRangeException
-                port = Nothing
-            End Try
-
-            Try
-                ip = Dns.GetHostByName(ip).AddressList(0).ToString()
-            Catch ex As Exception
-            End Try
-
-
-            '  ------------------------------其他-----------------------------------
-            If My.Settings.ServersGame(i) = "0" Then
-
-                If port Is Nothing Then port = 0
-
-
-                Dim ping As PingServer = PingServer.Ping(ip, port)
-
-                If ping.IsOnline Then
-                    If port Is Nothing Then
-                        msg = "**伺服器IP：**" & ip & vbCrLf & "**狀態：**" & online(1) & vbCrLf
-                    Else
-                        msg = "**伺服器IP：**" & My.Settings.Serversip(i) & vbCrLf & "**狀態：**" & online(1) & vbCrLf
-                    End If
-
-                Else
-
-                    If port Is Nothing Then
-                        msg = "**伺服器IP：**" & ip & vbCrLf & "**狀態：**" & online(0) & vbCrLf
-                    Else
-                        msg = "**伺服器IP：**" & My.Settings.Serversip(i) & vbCrLf & "**狀態：**" & online(0) & vbCrLf
-                    End If
-
-                End If
-
-
-                '------------------------------MInecraft-----------------------------------
-            ElseIf My.Settings.ServersGame(i) = "1" Then
-
-                If port Is Nothing Then port = 25565
-
-                Dim ping As MinecraftServerInfo = MinecraftServerInfo.GetServerInformation(ip, port)
-                If ping.IsOnline Then
-
-                    If port Is Nothing Then
-                        msg = "**伺服器IP：**" & ip & vbCrLf & "**狀態：**" & online(1) & vbCrLf
-                    Else
-                        msg = "**伺服器IP：**" & My.Settings.Serversip(i) & vbCrLf & "**狀態：**" & online(1) & vbCrLf
-                    End If
-
-                    msg &= "**遊戲版本：**" & ping.MinecraftVersion & vbCrLf & "**人數：**" & ping.CurrentPlayerCount & "/" & ping.MaxPlayerCount & vbCrLf
-
-                Else
-
-                    If port Is Nothing Then
-                        msg = "**伺服器IP：**" & ip & vbCrLf & "**狀態：**" & online(0) & vbCrLf
-                    Else
-                        msg = "**伺服器IP：**" & My.Settings.Serversip(i) & vbCrLf & "**狀態：**" & online(0) & vbCrLf
-                    End If
-
-                End If
-
-
-                '------------------------------Source引擎-----------------------------------
-            ElseIf My.Settings.ServersGame(i) = "2" Then
-
-                If port Is Nothing Then port = 27015
-
-                Dim SSQ As SSQL = New SSQL()
-                Dim endPoint As New IPEndPoint(IPAddress.Parse(ip), port)
-                Dim ping As ServerInfo = Nothing
-                Dim isonline As Boolean = False
-
+        Try
+            Dim ip As String
+            For i = 0 To My.Settings.serverCount
+                Dim msg As String = ""
+                Dim ServerName As String = My.Settings.ServersName(i)
                 Try
-                    ping = SSQ.Server(endPoint)
-                    isonline = True
-                Catch ex As SSQLServerException
-                    isonline = False
+                    ip = My.Settings.Serversip(i).Split(":")(0)
+                Catch ex As NullReferenceException
+                    MsgBox(ex.Message)
+                Catch ex As Exception
+
                 End Try
 
-                If isonline Then
+                Dim port As String
+                Dim online() As String = {"離線 :negative_squared_cross_mark:", "線上 :white_check_mark:"}
+                Try
+                    port = My.Settings.Serversip(i).Split(":")(1)
+                Catch ex As IndexOutOfRangeException
+                    port = Nothing
+                End Try
 
-                    If port Is Nothing Then
-                        msg = "**伺服器IP：**" & ip & vbCrLf & "**狀態：**" & online(1) & vbCrLf
-                    Else
-                        msg = "**伺服器IP：**" & My.Settings.Serversip(i) & vbCrLf & "**狀態：**" & online(1) & vbCrLf
-                    End If
+                Try
+                    ip = Dns.GetHostByName(ip).AddressList(0).ToString()
+                Catch ex As Exception
+                End Try
 
-                    msg &= "**伺服器名稱：**" & ping.Name & vbCrLf
 
-                    msg &= "**遊戲：**" & ping.Game & "** 版本：**" & ping.Version & vbCrLf & "**人數：**" & ping.PlayerCount & "/" & ping.MaxPlayers & vbCrLf
-                    msg &= "**地圖：**" & ping.Map & vbCrLf
+                '  ------------------------------其他-----------------------------------
+                If My.Settings.ServersGame(i) = "0" Then
 
-                Else
+                    Try
+                        If port Is Nothing Then port = 0
+                        Dim ping As PingServer = PingServer.Ping(ip, port)
 
-                    If port Is Nothing Then
-                        msg = "**伺服器IP：**" & ip & vbCrLf & "**狀態：**" & online(0) & vbCrLf
-                    Else
-                        msg = "**伺服器IP：**" & My.Settings.Serversip(i) & vbCrLf & "**狀態：**" & online(0) & vbCrLf
-                    End If
+                        If ping.IsOnline Then
+                            If port Is Nothing Then
+                                msg = "**伺服器IP：**" & ip & vbCrLf & "**狀態：**" & online(1) & vbCrLf
+                            Else
+                                msg = "**伺服器IP：**" & My.Settings.Serversip(i) & vbCrLf & "**狀態：**" & online(1) & vbCrLf
+                            End If
+
+                        Else
+
+                            If port Is Nothing Then
+                                msg = "**伺服器IP：**" & ip & vbCrLf & "**狀態：**" & online(0) & vbCrLf
+                            Else
+                                msg = "**伺服器IP：**" & My.Settings.Serversip(i) & vbCrLf & "**狀態：**" & online(0) & vbCrLf
+                            End If
+
+                        End If
+                    Catch ex As Exception
+
+                    End Try
+
+
+
+
+                    '------------------------------MInecraft-----------------------------------
+                ElseIf My.Settings.ServersGame(i) = "1" Then
+
+                    If port Is Nothing Then port = 25565
+                    Try
+                        Dim ping As MinecraftServerInfo = MinecraftServerInfo.GetServerInformation(ip, port)
+                        If ping.IsOnline Then
+
+                            If port Is Nothing Then
+                                msg = "**伺服器IP：**" & ip & vbCrLf & "**狀態：**" & online(1) & vbCrLf
+                            Else
+                                msg = "**伺服器IP：**" & My.Settings.Serversip(i) & vbCrLf & "**狀態：**" & online(1) & vbCrLf
+                            End If
+
+                            msg &= "**遊戲版本：**" & ping.MinecraftVersion & vbCrLf & "**人數：**" & ping.CurrentPlayerCount & "/" & ping.MaxPlayerCount & vbCrLf
+
+                        Else
+
+                            If port Is Nothing Then
+                                msg = "**伺服器IP：**" & ip & vbCrLf & "**狀態：**" & online(0) & vbCrLf
+                            Else
+                                msg = "**伺服器IP：**" & My.Settings.Serversip(i) & vbCrLf & "**狀態：**" & online(0) & vbCrLf
+                            End If
+
+                        End If
+                    Catch ex As Exception
+
+                    End Try
+
+
+
+                    '------------------------------Source引擎-----------------------------------
+                ElseIf My.Settings.ServersGame(i) = "2" Then
+
+                    If port Is Nothing Then port = 27015
+                    Try
+                        Dim SSQ As SSQL = New SSQL()
+                        Dim endPoint As New IPEndPoint(IPAddress.Parse(ip), port)
+                        Dim ping As ServerInfo = Nothing
+                        Dim isonline As Boolean = False
+
+                        Try
+                            ping = SSQ.Server(endPoint)
+                            isonline = True
+                        Catch ex As SSQLServerException
+                            isonline = False
+                        End Try
+
+                        If isonline Then
+
+                            If port Is Nothing Then
+                                msg = "**伺服器IP：**" & ip & vbCrLf & "**狀態：**" & online(1) & vbCrLf
+                            Else
+                                msg = "**伺服器IP：**" & My.Settings.Serversip(i) & vbCrLf & "**狀態：**" & online(1) & vbCrLf
+                            End If
+
+                            msg &= "**伺服器名稱：**" & ping.Name & vbCrLf
+
+                            msg &= "**遊戲：**" & ping.Game & "** 版本：**" & ping.Version & vbCrLf & "**人數：**" & ping.PlayerCount & "/" & ping.MaxPlayers & vbCrLf
+                            msg &= "**地圖：**" & ping.Map & vbCrLf
+
+                        Else
+
+                            If port Is Nothing Then
+                                msg = "**伺服器IP：**" & ip & vbCrLf & "**狀態：**" & online(0) & vbCrLf
+                            Else
+                                msg = "**伺服器IP：**" & My.Settings.Serversip(i) & vbCrLf & "**狀態：**" & online(0) & vbCrLf
+                            End If
+
+                        End If
+                    Catch ex As Exception
+
+                    End Try
+
+                    '--------------------------------------------------------------------------------
+
 
                 End If
-                '--------------------------------------------------------------------------------
 
 
-            End If
+                If msg IsNot "" Then
+                    EmbedField.Add(New EmbedFieldBuilder With {
+                                       .IsInline = True,
+                                       .Name = ServerName,
+                                       .Value = msg
+                                       })
+                End If
 
+            Next
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
 
-            If msg IsNot "" Then
-                EmbedField.Add(New EmbedFieldBuilder With {
-                                   .IsInline = True,
-                                   .Name = ServerName,
-                                   .Value = msg
-                                   })
-            End If
-
-        Next
         Return EmbedField
     End Function
     Dim message As Rest.RestUserMessage = Nothing
     Private Async Sub MainTimer_Tick(sender As Object, e As EventArgs) Handles MainTimer.Tick, Button4.Click
-        Dim embed As New EmbedBuilder With {
+        Dim embed As EmbedBuilder
+        Try
+            embed = New EmbedBuilder With {
                                                 .Title = "各伺服器狀態",
                                                 .Description = "",
                                                 .Color = New Color(0, 255, 0),
@@ -200,6 +235,10 @@ Public Class DGSS
                                                 }
                                                 }
 
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
         Try
             message = Await Discord.GetGuild(Discord.Guilds(0).Id).GetTextChannel(My.Settings.channel).GetMessageAsync(My.Settings.MessageID)
         Catch ex As Exception
@@ -207,13 +246,13 @@ Public Class DGSS
         End Try
 
         If message Is Nothing Then
-            message = Await Discord.GetGuild(Discord.Guilds(0).Id).GetTextChannel(My.Settings.channel).SendMessageAsync("", False, embed)
+            message = Await Discord.GetGuild(Discord.Guilds(0).Id).GetTextChannel(My.Settings.channel).SendMessageAsync("", False, Embed)
             My.Settings.MessageID = message.Id
             My.Settings.Save()
         Else
             Await message.ModifyAsync(Function(x)
                                           x.Content = ""
-                                          x.Embed = embed.Build
+                                          x.Embed = Embed.Build
                                       End Function)
         End If
 

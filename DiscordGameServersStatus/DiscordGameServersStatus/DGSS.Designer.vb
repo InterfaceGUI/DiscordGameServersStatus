@@ -37,6 +37,7 @@ Partial Class DGSS
         Me.Button6 = New System.Windows.Forms.Button()
         Me.MainTimer = New System.Windows.Forms.Timer(Me.components)
         Me.UpdataTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -162,11 +163,22 @@ Partial Class DGSS
         'MainTimer
         '
         '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("微軟正黑體", 9.0!)
+        Me.Label4.Location = New System.Drawing.Point(1, 322)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(56, 16)
+        Me.Label4.TabIndex = 4
+        Me.Label4.Text = "未知版本"
+        '
         'DGSS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 24.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(223, 337)
+        Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.Button6)
         Me.Controls.Add(Me.Button5)
@@ -174,6 +186,7 @@ Partial Class DGSS
         Me.Font = New System.Drawing.Font("微軟正黑體", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Margin = New System.Windows.Forms.Padding(6)
+        Me.MaximizeBox = False
         Me.Name = "DGSS"
         Me.Text = "DiscordGameServersStatus"
         Me.GroupBox1.ResumeLayout(False)
@@ -196,4 +209,5 @@ Partial Class DGSS
     Friend WithEvents UpdataTimer As Timer
     Friend WithEvents ComboBox1 As ComboBox
     Friend WithEvents Label3 As Label
+    Friend WithEvents Label4 As Label
 End Class
