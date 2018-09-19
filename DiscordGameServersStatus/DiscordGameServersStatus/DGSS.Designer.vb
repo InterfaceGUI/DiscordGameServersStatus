@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class DGSS
     Inherits System.Windows.Forms.Form
 
     'Form 覆寫 Dispose 以清除元件清單。
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class DGSS
     '注意: 以下為 Windows Form 設計工具所需的程序
     '可以使用 Windows Form 設計工具進行修改。
     '請勿使用程式碼編輯器進行修改。
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.Button1 = New System.Windows.Forms.Button()
@@ -31,7 +31,7 @@ Partial Class DGSS
         Me.Label1 = New System.Windows.Forms.Label()
         Me.StartButton = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.serverlistButton = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Button6 = New System.Windows.Forms.Button()
@@ -58,9 +58,9 @@ Partial Class DGSS
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Controls.Add(Me.StartButton)
         Me.GroupBox1.Controls.Add(Me.Button4)
-        Me.GroupBox1.Controls.Add(Me.Button2)
+        Me.GroupBox1.Controls.Add(Me.serverlistButton)
         Me.GroupBox1.Controls.Add(Me.Button1)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
+        Me.GroupBox1.Location = New System.Drawing.Point(14, 12)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(195, 310)
         Me.GroupBox1.TabIndex = 1
@@ -72,7 +72,7 @@ Partial Class DGSS
         Me.ComboBox1.Font = New System.Drawing.Font("微軟正黑體", 13.0!)
         Me.ComboBox1.FormattingEnabled = True
         Me.ComboBox1.Items.AddRange(New Object() {"10分鐘", "20分鐘", "30分鐘", "60分鐘"})
-        Me.ComboBox1.Location = New System.Drawing.Point(95, 125)
+        Me.ComboBox1.Location = New System.Drawing.Point(95, 104)
         Me.ComboBox1.Name = "ComboBox1"
         Me.ComboBox1.Size = New System.Drawing.Size(89, 30)
         Me.ComboBox1.TabIndex = 3
@@ -80,7 +80,7 @@ Partial Class DGSS
         'Label2
         '
         Me.Label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label2.Location = New System.Drawing.Point(95, 161)
+        Me.Label2.Location = New System.Drawing.Point(95, 140)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(89, 29)
         Me.Label2.TabIndex = 2
@@ -90,7 +90,7 @@ Partial Class DGSS
         'Label3
         '
         Me.Label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label3.Location = New System.Drawing.Point(6, 125)
+        Me.Label3.Location = New System.Drawing.Point(6, 104)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(89, 30)
         Me.Label3.TabIndex = 2
@@ -100,7 +100,7 @@ Partial Class DGSS
         'Label1
         '
         Me.Label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label1.Location = New System.Drawing.Point(6, 161)
+        Me.Label1.Location = New System.Drawing.Point(6, 140)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(89, 29)
         Me.Label1.TabIndex = 2
@@ -109,9 +109,10 @@ Partial Class DGSS
         '
         'StartButton
         '
-        Me.StartButton.Location = New System.Drawing.Point(6, 193)
+        Me.StartButton.Font = New System.Drawing.Font("微軟正黑體", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
+        Me.StartButton.Location = New System.Drawing.Point(6, 174)
         Me.StartButton.Name = "StartButton"
-        Me.StartButton.Size = New System.Drawing.Size(178, 70)
+        Me.StartButton.Size = New System.Drawing.Size(178, 91)
         Me.StartButton.TabIndex = 0
         Me.StartButton.Text = "啟動"
         Me.StartButton.UseVisualStyleBackColor = True
@@ -125,14 +126,14 @@ Partial Class DGSS
         Me.Button4.Text = "立即發送訊息"
         Me.Button4.UseVisualStyleBackColor = True
         '
-        'Button2
+        'serverlistButton
         '
-        Me.Button2.Location = New System.Drawing.Point(6, 68)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(178, 30)
-        Me.Button2.TabIndex = 0
-        Me.Button2.Text = "伺服器列表"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.serverlistButton.Location = New System.Drawing.Point(6, 68)
+        Me.serverlistButton.Name = "serverlistButton"
+        Me.serverlistButton.Size = New System.Drawing.Size(178, 30)
+        Me.serverlistButton.TabIndex = 0
+        Me.serverlistButton.Text = "伺服器列表"
+        Me.serverlistButton.UseVisualStyleBackColor = True
         '
         'Button5
         '
@@ -199,7 +200,7 @@ Partial Class DGSS
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents StartButton As Button
     Friend WithEvents Button4 As Button
-    Friend WithEvents Button2 As Button
+    Friend WithEvents serverlistButton As Button
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Button5 As Button

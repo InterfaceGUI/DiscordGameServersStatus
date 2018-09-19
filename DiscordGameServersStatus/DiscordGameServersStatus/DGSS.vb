@@ -4,6 +4,7 @@ Imports System.Net
 Imports DiscordGameServersStatus.Server.Ping
 Imports SSQLib
 Public Class DGSS
+
     Dim Discord As DiscordSocketClient
     Dim Start As Boolean
     Dim Time() As Int32 = {600000, 1200000, 1800000, 3600000} ' 10分鐘,20分鐘,30分鐘,60分鐘
@@ -16,7 +17,7 @@ Public Class DGSS
         End If
         '--------------------------------
 
-        '初始化Dsicord--------
+        '初始化Dsicord-------------------
         Discord = New DiscordSocketClient(New DiscordSocketConfig With {
                                           .WebSocketProvider = Net.Providers.WS4Net.WS4NetProvider.Instance,
                                           .UdpSocketProvider = Net.Providers.UDPClient.UDPClientProvider.Instance,
@@ -33,7 +34,7 @@ Public Class DGSS
     Private Async Sub StartButton_Click(sender As Object, e As EventArgs) Handles StartButton.Click
         If My.Settings.token Is "" Then
             MsgBox("請先設定DiscordBot", 0 + 48)
-            Discordsetting.Show()
+            Discordsetting.ShowDialog()
             Exit Sub
         End If
         Start = Not Start
@@ -247,24 +248,24 @@ Public Class DGSS
         End Try
 
         If message Is Nothing Then
-            message = Await Discord.GetGuild(Discord.Guilds(0).Id).GetTextChannel(My.Settings.channel).SendMessageAsync("", False, Embed)
+            message = Await Discord.GetGuild(Discord.Guilds(0).Id).GetTextChannel(My.Settings.channel).SendMessageAsync("", False, embed)
             My.Settings.MessageID = message.Id
             My.Settings.Save()
         Else
             Await message.ModifyAsync(Function(x)
                                           x.Content = ""
-                                          x.Embed = Embed.Build
+                                          x.Embed = embed.Build
                                       End Function)
         End If
 
     End Sub
 
     Private Sub DisocrdBOT設定_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Discordsetting.Show()
+        Discordsetting.ShowDialog()
     End Sub
 
-    Private Sub 伺服器列表_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        ServerlistForm.Show()
+    Private Sub 伺服器列表_Click(sender As Object, e As EventArgs) Handles serverlistButton.Click
+        ServerlistForm.ShowDialog()
     End Sub
 
     Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
@@ -281,4 +282,6 @@ Public Class DGSS
         Catch ex As Exception
         End Try
     End Sub
+
+
 End Class
