@@ -21,7 +21,7 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="Timer" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">600000</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="MessageID" Type="System.UInt64" Scope="User">
       <Value Profile="(Default)">0</Value>

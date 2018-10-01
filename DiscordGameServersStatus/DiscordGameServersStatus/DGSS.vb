@@ -20,7 +20,6 @@ Public Class DGSS
         '初始化Dsicord-------------------
         Discord = New DiscordSocketClient(New DiscordSocketConfig With {
                                           .WebSocketProvider = Net.Providers.WS4Net.WS4NetProvider.Instance,
-                                          .UdpSocketProvider = Net.Providers.UDPClient.UDPClientProvider.Instance,
                                           .MessageCacheSize = 20
         })
         '--------------------------------
