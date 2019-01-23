@@ -65,6 +65,8 @@ Partial Class MsgBox_ServerList
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.CheckBox1)
         Me.Controls.Add(Me.Label1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.MaximizeBox = False
         Me.Name = "MsgBox_ServerList"
         Me.Text = "提醒"
         Me.ResumeLayout(False)
