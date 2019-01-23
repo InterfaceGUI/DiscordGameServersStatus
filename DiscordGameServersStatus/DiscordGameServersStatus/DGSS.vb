@@ -15,19 +15,23 @@ Public Class DGSS
         If Deployment.Application.ApplicationDeployment.IsNetworkDeployed Then
             Label4.Text = "Ver：" & Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString()
         End If
-        '--------------------------------
+        '--------------------------------------
 
         '初始化Dsicord-------------------
         Discord = New DiscordSocketClient(New DiscordSocketConfig With {
                                           .WebSocketProvider = Net.Providers.WS4Net.WS4NetProvider.Instance,
                                           .MessageCacheSize = 20
         })
-        '--------------------------------
+        '--------------------------------------
 
         ComboBox1.SelectedIndex = My.Settings.Timer
         MainTimer.Interval = Time(My.Settings.Timer)
         Button4.Enabled = False
 
+        If Not My.Settings.WMessage_ServerList Then
+            My.Computer.Audio.PlaySystemSound(Media.SystemSounds.Exclamation)
+            MsgBox_ServerList.ShowDialog()
+        End If
     End Sub
 
     Private Async Sub StartButton_Click(sender As Object, e As EventArgs) Handles StartButton.Click
@@ -46,6 +50,8 @@ Public Class DGSS
                 StartButton.Text = "停止"
                 MainTimer.Enabled = True
                 Button4.Enabled = True
+                Button1.Enabled = False
+                serverlistButton.Enabled = False
             Catch ex As Exception
                 Start = False
                 Label2.Text = "錯誤"
@@ -54,6 +60,8 @@ Public Class DGSS
                 StartButton.Text = "啟動"
                 MainTimer.Enabled = False
                 Button4.Enabled = False
+                Button1.Enabled = True
+                serverlistButton.Enabled = True
             End Try
         Else
             Await Discord.LogoutAsync
@@ -63,6 +71,8 @@ Public Class DGSS
             Label2.ForeColor = Drawing.Color.Black
             MainTimer.Enabled = False
             Button4.Enabled = False
+            Button1.Enabled = True
+            serverlistButton.Enabled = True
         End If
     End Sub
 
@@ -71,6 +81,12 @@ Public Class DGSS
         Try
             Dim ip As String
             For i = 0 To My.Settings.serverCount
+
+                If My.Settings.ServerEN(i) = 0 Then
+                    Continue For
+                End If
+
+
                 Dim msg As String = ""
                 Dim ServerName As String = My.Settings.ServersName(i)
                 Try

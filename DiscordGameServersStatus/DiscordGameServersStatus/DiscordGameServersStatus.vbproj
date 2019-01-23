@@ -34,7 +34,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>9</ApplicationRevision>
+    <ApplicationRevision>10</ApplicationRevision>
     <ApplicationVersion>1.4.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -77,7 +77,7 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>E5BD3722DB9A74BA418934F980611F3362E1392F</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>E35260D2E6C923A049CA32114F4AE48549AB4CE7</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
@@ -89,7 +89,7 @@
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>DiscordGameServersStatus_1_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>DiscordGameServersStatus_2_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Discord.Net.Commands, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
@@ -225,6 +225,12 @@
       <DependentUpon>DGSS.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="MsgBox_ServerList.Designer.vb">
+      <DependentUpon>MsgBox_ServerList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MsgBox_ServerList.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -255,6 +261,9 @@
     <EmbeddedResource Include="DGSS.resx">
       <DependentUpon>DGSS.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MsgBox_ServerList.resx">
+      <DependentUpon>MsgBox_ServerList.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -267,7 +276,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="DiscordGameServersStatus_1_TemporaryKey.pfx" />
-    <None Include="DiscordGameServersStatus_TemporaryKey.pfx" />
+    <None Include="DiscordGameServersStatus_2_TemporaryKey.pfx" />
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
