@@ -16,12 +16,18 @@ Public Class ServerlistForm
     Private Sub ServerlistForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DataGridView1.RowHeadersWidth = 50
         If My.Settings.ServersName IsNot Nothing Then
+            If My.Settings.ServerEN Is Nothing Then
+                For i = 0 To My.Settings.ServersName.Count - 1
+                    生成按鈕(i, My.Settings.ServersName(i), My.Settings.Serversip(i), My.Settings.ServersGame(i), 0)
+                Next
+            Else
+                For i = 0 To My.Settings.ServersName.Count - 1
 
-            For i = 0 To My.Settings.ServersName.Count - 1
+                    生成按鈕(i, My.Settings.ServersName(i), My.Settings.Serversip(i), My.Settings.ServersGame(i), My.Settings.ServerEN(i))
 
-                生成按鈕(i, My.Settings.ServersName(i), My.Settings.Serversip(i), My.Settings.ServersGame(i), My.Settings.ServerEN(i))
+                Next
+            End If
 
-            Next
 
             serverCount = My.Settings.ServersName.Count - 1
 
