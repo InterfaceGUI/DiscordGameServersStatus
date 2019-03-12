@@ -1,7 +1,7 @@
 ﻿
 Imports System.Collections.Specialized
 Imports System.ComponentModel
-
+Imports ICSharpCode.SharpZipLib
 Public Class ServerlistForm
     Dim labelServername(10) As Label
     Dim labelServerip(10) As Label
