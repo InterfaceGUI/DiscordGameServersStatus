@@ -40,6 +40,7 @@ Partial Class Discordsetting
         'Label1
         '
         Me.Label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label1.Font = New System.Drawing.Font("微軟正黑體", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
         Me.Label1.Location = New System.Drawing.Point(12, 9)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(97, 30)
@@ -57,6 +58,7 @@ Partial Class Discordsetting
         'Label2
         '
         Me.Label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label2.Font = New System.Drawing.Font("微軟正黑體", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
         Me.Label2.Location = New System.Drawing.Point(12, 51)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(168, 30)
@@ -94,7 +96,7 @@ Partial Class Discordsetting
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.TextBoxToken)
         Me.Font = New System.Drawing.Font("新細明體", 14.0!)
-        Me.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.Margin = New System.Windows.Forms.Padding(5)
         Me.Name = "Discordsetting"
         Me.Text = "Discordsetting"
         Me.ResumeLayout(False)

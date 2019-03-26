@@ -82,6 +82,8 @@ Public Class DGSS
             Dim ip As String
             For i = 0 To My.Settings.serverCount
 
+                Dim NShowIP As Boolean = IIf(My.Settings.showIP(i) = 1, True, False)
+
                 If My.Settings.ServerEN(i) = 0 Then
                     Continue For
                 End If
@@ -120,17 +122,17 @@ Public Class DGSS
 
                         If ping.IsOnline Then
                             If port Is Nothing Then
-                                msg = "**伺服器IP：**" & ip & vbCrLf & "**狀態：**" & online(1) & vbCrLf
+                                msg = IIf(NShowIP, "", "**伺服器IP：**" & ip) & vbCrLf & "**狀態：**" & online(1) & vbCrLf
                             Else
-                                msg = "**伺服器IP：**" & My.Settings.Serversip(i) & vbCrLf & "**狀態：**" & online(1) & vbCrLf
+                                msg = IIf(NShowIP, "", IIf(NShowIP, "", "**伺服器IP：**" & My.Settings.Serversip(i))) & vbCrLf & "**狀態：**" & online(1) & vbCrLf
                             End If
 
                         Else
 
                             If port Is Nothing Then
-                                msg = "**伺服器IP：**" & ip & vbCrLf & "**狀態：**" & online(0) & vbCrLf
+                                msg = IIf(NShowIP, "", "**伺服器IP：**" & ip) & vbCrLf & "**狀態：**" & online(0) & vbCrLf
                             Else
-                                msg = "**伺服器IP：**" & My.Settings.Serversip(i) & vbCrLf & "**狀態：**" & online(0) & vbCrLf
+                                msg = IIf(NShowIP, "", "**伺服器IP：**" & My.Settings.Serversip(i)) & vbCrLf & "**狀態：**" & online(0) & vbCrLf
                             End If
 
                         End If
@@ -150,9 +152,9 @@ Public Class DGSS
                         If ping.IsOnline Then
 
                             If port Is Nothing Then
-                                msg = "**伺服器IP：**" & ip & vbCrLf & "**狀態：**" & online(1) & vbCrLf
+                                msg = IIf(NShowIP, "", "**伺服器IP：**" & ip) & vbCrLf & "**狀態：**" & online(1) & vbCrLf
                             Else
-                                msg = "**伺服器IP：**" & My.Settings.Serversip(i) & vbCrLf & "**狀態：**" & online(1) & vbCrLf
+                                msg = IIf(NShowIP, "", "**伺服器IP：**" & My.Settings.Serversip(i)) & vbCrLf & "**狀態：**" & online(1) & vbCrLf
                             End If
 
                             msg &= "**遊戲版本：**" & ping.MinecraftVersion & vbCrLf & "**人數：**" & ping.CurrentPlayerCount & "/" & ping.MaxPlayerCount & vbCrLf
@@ -160,9 +162,9 @@ Public Class DGSS
                         Else
 
                             If port Is Nothing Then
-                                msg = "**伺服器IP：**" & ip & vbCrLf & "**狀態：**" & online(0) & vbCrLf
+                                msg = IIf(NShowIP, "", "**伺服器IP：**" & ip) & vbCrLf & "**狀態：**" & online(0) & vbCrLf
                             Else
-                                msg = "**伺服器IP：**" & My.Settings.Serversip(i) & vbCrLf & "**狀態：**" & online(0) & vbCrLf
+                                msg = IIf(NShowIP, "", "**伺服器IP：**" & My.Settings.Serversip(i)) & vbCrLf & "**狀態：**" & online(0) & vbCrLf
                             End If
 
                         End If
@@ -192,9 +194,9 @@ Public Class DGSS
                         If isonline Then
 
                             If port Is Nothing Then
-                                msg = "**伺服器IP：**" & ip & vbCrLf & "**狀態：**" & online(1) & vbCrLf
+                                msg = IIf(NShowIP, "", "**伺服器IP：**" & ip) & vbCrLf & "**狀態：**" & online(1) & vbCrLf
                             Else
-                                msg = "**伺服器IP：**" & My.Settings.Serversip(i) & vbCrLf & "**狀態：**" & online(1) & vbCrLf
+                                msg = IIf(NShowIP, "", "**伺服器IP：**" & My.Settings.Serversip(i)) & vbCrLf & "**狀態：**" & online(1) & vbCrLf
                             End If
 
                             msg &= "**伺服器名稱：**" & ping.Name & vbCrLf
@@ -205,9 +207,9 @@ Public Class DGSS
                         Else
 
                             If port Is Nothing Then
-                                msg = "**伺服器IP：**" & ip & vbCrLf & "**狀態：**" & online(0) & vbCrLf
+                                msg = IIf(NShowIP, "", "**伺服器IP：**" & ip) & vbCrLf & "**狀態：**" & online(0) & vbCrLf
                             Else
-                                msg = "**伺服器IP：**" & My.Settings.Serversip(i) & vbCrLf & "**狀態：**" & online(0) & vbCrLf
+                                msg = IIf(NShowIP, "", "**伺服器IP：**" & My.Settings.Serversip(i)) & vbCrLf & "**狀態：**" & online(0) & vbCrLf
                             End If
 
                         End If

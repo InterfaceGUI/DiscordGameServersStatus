@@ -14,16 +14,17 @@ Public Class ServerlistForm
     Dim GameList As String() = {"其他", "Minecraft", "Source引擎"}
 
     Private Sub ServerlistForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.MaximizeBox = False
         DataGridView1.RowHeadersWidth = 50
         If My.Settings.ServersName IsNot Nothing Then
-            If My.Settings.ServerEN Is Nothing Then
+            If My.Settings.ServerEN Is Nothing Or My.Settings.showIP Is Nothing Then
                 For i = 0 To My.Settings.ServersName.Count - 1
-                    生成按鈕(i, My.Settings.ServersName(i), My.Settings.Serversip(i), My.Settings.ServersGame(i), 0)
+                    生成按鈕(i, My.Settings.ServersName(i), My.Settings.Serversip(i), My.Settings.ServersGame(i), 0, 0)
                 Next
             Else
                 For i = 0 To My.Settings.ServersName.Count - 1
 
-                    生成按鈕(i, My.Settings.ServersName(i), My.Settings.Serversip(i), My.Settings.ServersGame(i), My.Settings.ServerEN(i))
+                    生成按鈕(i, My.Settings.ServersName(i), My.Settings.Serversip(i), My.Settings.ServersGame(i), My.Settings.ServerEN(i), My.Settings.showIP(i))
 
                 Next
             End If
@@ -135,9 +136,9 @@ Public Class ServerlistForm
 
     End Sub
 
-    Private Sub 生成按鈕(ByVal Amount As Int16, Optional Servername As String = "", Optional Serverip As String = "", Optional Games As Int16 = 0, Optional EN As String = "")
+    Private Sub 生成按鈕(ByVal Amount As Int16, Optional Servername As String = "", Optional Serverip As String = "", Optional Games As Int16 = 0, Optional EN As String = "", Optional SIP As String = "")
 
-        DataGridView1.Rows.Add(New Object() {IIf(EN = 1, True, False), Nothing, Servername, Serverip})
+        DataGridView1.Rows.Add(New Object() {IIf(EN = 1, True, False), Nothing, Servername, Serverip, IIf(SIP = 1, True, False)})
         Dim dgvcc As New DataGridViewComboBoxCell
         For Each x In GameList
             dgvcc.Items.Add(x)
@@ -160,7 +161,7 @@ Public Class ServerlistForm
         Dim Serversip As New StringCollection()
         Dim ServersGame As New StringCollection()
         Dim ServerEN As New StringCollection()
-
+        Dim ShowIP As New StringCollection()
         For i = 0 To DataGridView1.Rows.Count - 1
             Try
                 If DataGridView1.Rows(i).Cells(2).Value Is Nothing Then
@@ -183,7 +184,9 @@ Public Class ServerlistForm
 
             ServersGame.Add(Array.IndexOf(GameList, DataGridView1.Rows(i).Cells(1).Value))
             ServerEN.Add(IIf(DataGridView1.Rows(i).Cells(0).Value, 1, 0))
+            ShowIP.Add(IIf(DataGridView1.Rows(i).Cells(4).Value, 1, 0))
         Next
+        My.Settings.showIP = ShowIP
         My.Settings.ServerEN = ServerEN
         My.Settings.ServersGame = ServersGame
         My.Settings.Serversip = Serversip
@@ -215,5 +218,24 @@ Public Class ServerlistForm
         Catch ex As Exception
             MsgBox(ex.ToString, MsgBoxStyle.Critical + MsgBoxStyle.OkOnly)
         End Try
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+
+        For Each x In DataGridView1.Rows
+            Dim CheckTrue As New DataGridViewCheckBoxCell
+            CheckTrue.Value = True
+            x.Cells(4) = CheckTrue
+            CheckTrue.Dispose()
+        Next
+    End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        For Each x In DataGridView1.Rows
+            Dim CheckFalse As New DataGridViewCheckBoxCell
+            CheckFalse.Value = False
+            x.Cells(4) = CheckFalse
+            CheckFalse.Dispose()
+        Next
     End Sub
 End Class
