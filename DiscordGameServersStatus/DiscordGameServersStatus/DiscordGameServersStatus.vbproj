@@ -24,8 +24,8 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>false</MapFileExtensions>
-    <InstallUrl>https://raw.githubusercontent.com/InterfaceGUI/DiscordGameServersStatus/master/DiscordGameServersStatus/DiscordGameServersStatus/publish/</InstallUrl>
-    <UpdateUrl>https://raw.githubusercontent.com/InterfaceGUI/DiscordGameServersStatus/master/DiscordGameServersStatus/DiscordGameServersStatus/publish/</UpdateUrl>
+    <InstallUrl>https://cdn.jsdelivr.net/gh/InterfaceGUI/DiscordGameServersStatus%40master/DiscordGameServersStatus/DiscordGameServersStatus/publish/</InstallUrl>
+    <UpdateUrl>https://cdn.jsdelivr.net/gh/InterfaceGUI/DiscordGameServersStatus%40master/DiscordGameServersStatus/DiscordGameServersStatus/publish/</UpdateUrl>
     <SupportUrl>https://github.com/InterfaceGUI/DiscordGameServersStatus/issues</SupportUrl>
     <ErrorReportUrl>https://github.com/InterfaceGUI/DiscordGameServersStatus/issues</ErrorReportUrl>
     <ProductName>DiscordGameServersStatusBot</ProductName>
