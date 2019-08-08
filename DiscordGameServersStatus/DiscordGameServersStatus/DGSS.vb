@@ -262,18 +262,27 @@ Public Class DGSS
             message = Await Discord.GetGuild(Discord.Guilds(0).Id).GetTextChannel(My.Settings.channel).GetMessageAsync(My.Settings.MessageID)
         Catch ex As Exception
 
+
         End Try
 
-        If message Is Nothing Then
-            message = Await Discord.GetGuild(Discord.Guilds(0).Id).GetTextChannel(My.Settings.channel).SendMessageAsync("", False, embed)
-            My.Settings.MessageID = message.Id
-            My.Settings.Save()
-        Else
-            Await message.ModifyAsync(Function(x)
-                                          x.Content = ""
-                                          x.Embed = embed.Build
-                                      End Function)
-        End If
+        Try
+            If message Is Nothing Then
+                message = Await Discord.GetGuild(Discord.Guilds(0).Id).GetTextChannel(My.Settings.channel).SendMessageAsync("", False, embed)
+                My.Settings.MessageID = message.Id
+                My.Settings.Save()
+            Else
+                Await message.ModifyAsync(Function(x)
+                                              x.Content = ""
+                                              x.Embed = embed.Build
+                                          End Function)
+            End If
+        Catch ex As Exception
+
+
+
+        End Try
+
+
 
     End Sub
 
