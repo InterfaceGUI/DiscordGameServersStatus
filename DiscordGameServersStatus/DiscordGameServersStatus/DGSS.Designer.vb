@@ -38,7 +38,14 @@ Partial Class DGSS
         Me.MainTimer = New System.Windows.Forms.Timer(Me.components)
         Me.UpdataTimer = New System.Windows.Forms.Timer(Me.components)
         Me.Label4 = New System.Windows.Forms.Label()
+        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
+        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.儲存設定檔ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.載入設定檔ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.GroupBox1.SuspendLayout()
+        Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Button1
@@ -60,7 +67,7 @@ Partial Class DGSS
         Me.GroupBox1.Controls.Add(Me.Button4)
         Me.GroupBox1.Controls.Add(Me.serverlistButton)
         Me.GroupBox1.Controls.Add(Me.Button1)
-        Me.GroupBox1.Location = New System.Drawing.Point(14, 12)
+        Me.GroupBox1.Location = New System.Drawing.Point(14, 36)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(195, 310)
         Me.GroupBox1.TabIndex = 1
@@ -110,16 +117,16 @@ Partial Class DGSS
         'StartButton
         '
         Me.StartButton.Font = New System.Drawing.Font("微軟正黑體", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
-        Me.StartButton.Location = New System.Drawing.Point(6, 174)
+        Me.StartButton.Location = New System.Drawing.Point(6, 172)
         Me.StartButton.Name = "StartButton"
-        Me.StartButton.Size = New System.Drawing.Size(178, 91)
+        Me.StartButton.Size = New System.Drawing.Size(178, 93)
         Me.StartButton.TabIndex = 0
         Me.StartButton.Text = "啟動"
         Me.StartButton.UseVisualStyleBackColor = True
         '
         'Button4
         '
-        Me.Button4.Location = New System.Drawing.Point(6, 269)
+        Me.Button4.Location = New System.Drawing.Point(6, 271)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(178, 30)
         Me.Button4.TabIndex = 0
@@ -168,29 +175,69 @@ Partial Class DGSS
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("微軟正黑體", 9.0!)
-        Me.Label4.Location = New System.Drawing.Point(1, 322)
+        Me.Label4.Location = New System.Drawing.Point(0, 349)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(56, 16)
         Me.Label4.TabIndex = 4
         Me.Label4.Text = "未知版本"
         '
+        'BackgroundWorker1
+        '
+        Me.BackgroundWorker1.WorkerSupportsCancellation = True
+        '
+        'MenuStrip1
+        '
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.儲存設定檔ToolStripMenuItem, Me.載入設定檔ToolStripMenuItem})
+        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.MenuStrip1.Name = "MenuStrip1"
+        Me.MenuStrip1.Size = New System.Drawing.Size(223, 24)
+        Me.MenuStrip1.TabIndex = 5
+        Me.MenuStrip1.Text = "MenuStrip1"
+        Me.MenuStrip1.Visible = False
+        '
+        '儲存設定檔ToolStripMenuItem
+        '
+        Me.儲存設定檔ToolStripMenuItem.Name = "儲存設定檔ToolStripMenuItem"
+        Me.儲存設定檔ToolStripMenuItem.Size = New System.Drawing.Size(79, 20)
+        Me.儲存設定檔ToolStripMenuItem.Text = "儲存設定檔"
+        '
+        '載入設定檔ToolStripMenuItem
+        '
+        Me.載入設定檔ToolStripMenuItem.Name = "載入設定檔ToolStripMenuItem"
+        Me.載入設定檔ToolStripMenuItem.Size = New System.Drawing.Size(79, 20)
+        Me.載入設定檔ToolStripMenuItem.Text = "載入設定檔"
+        '
+        'SaveFileDialog1
+        '
+        Me.SaveFileDialog1.FileName = "DiscordGameServersStatus.exe.config"
+        Me.SaveFileDialog1.Filter = "DiscordGameServersStatus.exe.config|Config"
+        '
+        'OpenFileDialog1
+        '
+        Me.OpenFileDialog1.FileName = "DiscordGameServersStatus.exe.config"
+        Me.OpenFileDialog1.Filter = "DiscordGameServersStatus.exe.config|Config"
+        '
         'DGSS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 24.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(223, 337)
+        Me.ClientSize = New System.Drawing.Size(223, 366)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.Button6)
         Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.MenuStrip1)
         Me.Font = New System.Drawing.Font("微軟正黑體", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.MainMenuStrip = Me.MenuStrip1
         Me.Margin = New System.Windows.Forms.Padding(6)
         Me.MaximizeBox = False
         Me.Name = "DGSS"
         Me.Text = "DiscordGameServersStatus"
         Me.GroupBox1.ResumeLayout(False)
+        Me.MenuStrip1.ResumeLayout(False)
+        Me.MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -211,4 +258,10 @@ Partial Class DGSS
     Friend WithEvents ComboBox1 As ComboBox
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
+    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents MenuStrip1 As MenuStrip
+    Friend WithEvents 儲存設定檔ToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SaveFileDialog1 As SaveFileDialog
+    Friend WithEvents 載入設定檔ToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents OpenFileDialog1 As OpenFileDialog
 End Class

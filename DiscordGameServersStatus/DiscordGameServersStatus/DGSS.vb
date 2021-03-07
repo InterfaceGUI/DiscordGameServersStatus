@@ -27,12 +27,35 @@ Public Class DGSS
         ComboBox1.SelectedIndex = My.Settings.Timer
         MainTimer.Interval = Time(My.Settings.Timer)
         Button4.Enabled = False
+        AddHandler Discord.Ready, AddressOf Ready
+
 
         If Not My.Settings.WMessage_ServerList Then
             My.Computer.Audio.PlaySystemSound(Media.SystemSounds.Exclamation)
             MsgBox_ServerList.ShowDialog()
         End If
     End Sub
+
+    Function Ready() As Task
+        UpdateShowDialog()
+    End Function
+    Private Delegate Sub ShowDialogCallBack()
+    Private Sub UpdateShowDialog()
+        If Me.InvokeRequired() Then
+            Dim cb As New ShowDialogCallBack(AddressOf UpdateShowDialog)
+            Me.Invoke(cb, Nothing)
+        Else
+            StartButton.Enabled = True
+            Label2.Text = "已啟動"
+            Label2.ForeColor = Drawing.Color.Green
+            StartButton.Text = "停止"
+            MainTimer.Enabled = True
+            Button4.Enabled = True
+            Button1.Enabled = False
+            serverlistButton.Enabled = False
+        End If
+    End Sub
+
 
     Private Async Sub StartButton_Click(sender As Object, e As EventArgs) Handles StartButton.Click
         If My.Settings.token Is "" Then
@@ -45,13 +68,7 @@ Public Class DGSS
             Try
                 Await Discord.LoginAsync(TokenType.Bot, My.Settings.token)
                 Await Discord.StartAsync
-                Label2.Text = "已啟動"
-                Label2.ForeColor = Drawing.Color.Green
-                StartButton.Text = "停止"
-                MainTimer.Enabled = True
-                Button4.Enabled = True
-                Button1.Enabled = False
-                serverlistButton.Enabled = False
+                StartButton.Enabled = False
             Catch ex As Exception
                 Start = False
                 Label2.Text = "錯誤"
@@ -62,6 +79,7 @@ Public Class DGSS
                 Button4.Enabled = False
                 Button1.Enabled = True
                 serverlistButton.Enabled = True
+                StartButton.Enabled = True
             End Try
         Else
             Await Discord.LogoutAsync
@@ -73,6 +91,7 @@ Public Class DGSS
             Button4.Enabled = False
             Button1.Enabled = True
             serverlistButton.Enabled = True
+            StartButton.Enabled = True
         End If
     End Sub
 
@@ -148,7 +167,7 @@ Public Class DGSS
 
                     If port Is Nothing Then port = 25565
                     Try
-                        Dim ping As MinecraftServerInfo = MinecraftServerInfo.GetServerInformation(ip, port)
+                        Dim ping As MinecraftServerInfo = MinecraftServerInfo.GetServerInformation(My.Settings.Serversip(i).Split(":")(0), port)
                         If ping.IsOnline Then
 
                             If port Is Nothing Then
@@ -239,50 +258,17 @@ Public Class DGSS
         Return EmbedField
     End Function
     Dim message As Rest.RestUserMessage = Nothing
-    Private Async Sub MainTimer_Tick(sender As Object, e As EventArgs) Handles MainTimer.Tick, Button4.Click
-        Dim embed As EmbedBuilder
-        Try
-            embed = New EmbedBuilder With {
-                                                .Title = "各伺服器狀態",
-                                                .Description = "",
-                                                .Color = New Color(0, 255, 0),
-                                                .Fields = GetServersinfo(),
-                                                .Timestamp = Date.UtcNow,
-                                                .Footer = New EmbedFooterBuilder With {
-                                                .IconUrl = "https://i.imgur.com/UNPFf1f.jpg",
-                                                .Text = "BOT made by 科技狼(Tech wolf)"
-                                                }
-                                                }
-
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        End Try
-
-        Try
-            message = Await Discord.GetGuild(Discord.Guilds(0).Id).GetTextChannel(My.Settings.channel).GetMessageAsync(My.Settings.MessageID)
-        Catch ex As Exception
-
-
-        End Try
-
-        Try
-            If message Is Nothing Then
-                message = Await Discord.GetGuild(Discord.Guilds(0).Id).GetTextChannel(My.Settings.channel).SendMessageAsync("", False, embed)
-                My.Settings.MessageID = message.Id
-                My.Settings.Save()
-            Else
-                Await message.ModifyAsync(Function(x)
-                                              x.Content = ""
-                                              x.Embed = embed.Build
-                                          End Function)
+    Private Sub MainTimer_Tick(sender As Object, e As EventArgs) Handles MainTimer.Tick, Button4.Click
+        Static C As Int16 = 0
+        If BackgroundWorker1.IsBusy Then
+            C += 1
+            If C = 2 Then
+                BackgroundWorker1.CancelAsync()
+                C = 0
             End If
-        Catch ex As Exception
-
-
-
-        End Try
-
-
+            Exit Sub
+        End If
+        BackgroundWorker1.RunWorkerAsync()
 
     End Sub
 
@@ -309,5 +295,66 @@ Public Class DGSS
         End Try
     End Sub
 
+    Private Async Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
 
+        Dim embed As EmbedBuilder
+        Try
+            embed = New EmbedBuilder With {
+                                                .Title = "各伺服器狀態",
+                                                .Description = "",
+                                                .Color = New Color(0, 255, 0),
+                                                .Fields = GetServersinfo(),
+                                                .Timestamp = Date.UtcNow,
+                                                .Footer = New EmbedFooterBuilder With {
+                                                .IconUrl = "https://i.imgur.com/UNPFf1f.jpg",
+                                                .Text = "BOT made by 拉斯哈格(LarsHagrid)"
+                                                }
+                                                }
+
+        Catch ex As Exception
+
+        End Try
+
+        Try
+            message = Await Discord.GetGuild(Discord.Guilds(0).Id).GetTextChannel(My.Settings.channel).GetMessageAsync(My.Settings.MessageID)
+        Catch ex As Exception
+
+        End Try
+
+        Try
+            If message Is Nothing Then
+                message = Await Discord.GetGuild(Discord.Guilds(0).Id).GetTextChannel(My.Settings.channel).SendMessageAsync("", False, embed)
+                My.Settings.MessageID = message.Id
+                My.Settings.Save()
+            Else
+                Await message.ModifyAsync(Function(x)
+                                              x.Content = ""
+                                              x.Embed = embed.Build
+                                          End Function)
+            End If
+        Catch ex As Exception
+
+            MsgBox(ex.Message)
+
+        End Try
+
+    End Sub
+
+
+    Private Sub 儲存設定檔ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 儲存設定檔ToolStripMenuItem.Click
+
+        ' Process.Start("explorer.exe", My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData)
+        Dim R = SaveFileDialog1.ShowDialog()
+        If R = DialogResult.OK Then
+            My.Computer.FileSystem.CopyFile(Application.StartupPath & "/DiscordGameServersStatus.exe.config", SaveFileDialog1.FileName)
+        End If
+    End Sub
+
+    Private Sub 載入設定檔ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 載入設定檔ToolStripMenuItem.Click
+        Dim R = OpenFileDialog1.ShowDialog()
+        If R = DialogResult.OK Then
+            My.Computer.FileSystem.CopyFile(OpenFileDialog1.FileName, Application.StartupPath & "/DiscordGameServersStatus.exe.config", True)
+        End If
+
+    End Sub
 End Class

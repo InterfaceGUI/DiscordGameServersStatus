@@ -24,17 +24,17 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>false</MapFileExtensions>
-    <InstallUrl>https://cdn.jsdelivr.net/gh/InterfaceGUI/DiscordGameServersStatus%40master/DiscordGameServersStatus/DiscordGameServersStatus/publish/</InstallUrl>
-    <UpdateUrl>https://cdn.jsdelivr.net/gh/InterfaceGUI/DiscordGameServersStatus%40master/DiscordGameServersStatus/DiscordGameServersStatus/publish/</UpdateUrl>
+    <InstallUrl>https://interfacegui.github.io/publish/DGSS/</InstallUrl>
+    <UpdateUrl>https://interfacegui.github.io/publish/DGSS/</UpdateUrl>
     <SupportUrl>https://github.com/InterfaceGUI/DiscordGameServersStatus/issues</SupportUrl>
     <ErrorReportUrl>https://github.com/InterfaceGUI/DiscordGameServersStatus/issues</ErrorReportUrl>
     <ProductName>DiscordGameServersStatusBot</ProductName>
-    <PublisherName>科技狼</PublisherName>
+    <PublisherName>科技狼 %28拉斯哈格%29</PublisherName>
     <MinimumRequiredVersion>1.0.0.0</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>11</ApplicationRevision>
+    <ApplicationRevision>40</ApplicationRevision>
     <ApplicationVersion>1.5.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>

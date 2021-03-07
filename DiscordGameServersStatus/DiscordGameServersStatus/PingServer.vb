@@ -1,7 +1,6 @@
 ﻿Imports System.IO
 Imports System.Net
 Imports System.Net.Sockets
-Imports System.Text
 Imports Newtonsoft.Json
 Imports Newtonsoft.Json.Linq
 
@@ -55,24 +54,45 @@ Namespace Server.Ping
 
         Public Shared Function GetServerInformation(ByVal ip As String, ByVal port As Integer) As MinecraftServerInfo
             Try
-                Dim request As HttpWebRequest
-                Dim response As HttpWebResponse = Nothing
-                request = WebRequest.Create("https://mcapi.us/server/status?ip=" & ip & "&port=" & port)
-                response = request.GetResponse()
-                Dim reader As New StreamReader(response.GetResponseStream())
-                Dim jData As String
+                Dim request As HttpWebRequest  '宣告Http請求
+
+                Dim response As HttpWebResponse = Nothing '宣告Http伺服器回應
+
+                request = WebRequest.Create("https://mcapi.us/server/status?ip=" & ip & "&port=" & port) '那個API調用部分
+
+                response = request.GetResponse() '取得回應  p.s. 這裡並未使用異步、可能會出現wpf凍結等待伺服器回傳資料
+
+                Dim reader As New StreamReader(response.GetResponseStream()) '宣告資料流讀取 ，並取得回應得資料流
+
+                Dim jData As String '宣告json
                 While reader.Peek >= 0
                     jData = reader.ReadToEnd()
                 End While
-                Dim dict As JObject = CType(JsonConvert.DeserializeObject(jData), JObject)
-                Dim Players As players = JsonConvert.DeserializeObject(Of players)(dict("players").ToString)
+
+                Dim dict As JObject = CType(JsonConvert.DeserializeObject(jData), JObject) '宣告dict是個json物件，並且反序列化輸入的字串
+
+                Dim Players As players = JsonConvert.DeserializeObject(Of players)(dict("players").ToString) '抓出資料
+
                 Dim server As server = JsonConvert.DeserializeObject(Of server)(dict("server").ToString)
+
+
+                'MsgBox("狀態: " & IIf(dict("online"), "Online", "False") & vbLf & "玩家人數:" & Players & vbLf & "版本: " & server.name)
+
+
+
+                '取得MC伺服器 線上狀態
                 If dict("online").ToString = "False" Then
                     Return New MinecraftServerInfo(False, "", 0, 0, Nothing)
                 ElseIf dict("online").ToString = "True" Then
+
                 End If
+
+
+
+
                 Return New MinecraftServerInfo(True, dict("motd"), Players.max, Players.now, server.name)
             Catch ex As Exception
+
                 Return New MinecraftServerInfo(False, "", 0, 0, Nothing)
             End Try
 
