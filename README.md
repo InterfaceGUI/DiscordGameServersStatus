@@ -8,6 +8,9 @@ Library:
 [![NuGet](https://img.shields.io/myget/discord-net/v/Discord.Net.svg)](https://www.nuget.org/packages/Discord.Net)
 [![.Net.Framework](https://img.shields.io/badge/.NET%20Framework-4.6.1-blue.svg)](https://www.microsoft.com/zh-tw/download/details.aspx?id=17718)
 
+## 2021/03/22 更新內容: ##
+1. 更新Discord bot套件
+
 ## 2021/03/07 更新內容: ##
 1. 修復Minecraft ping的一些小問題
 
