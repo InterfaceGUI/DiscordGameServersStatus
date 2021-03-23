@@ -9,17 +9,18 @@ Public Class DGSS
     Dim Start As Boolean
     Dim Time() As Int32 = {600000, 1200000, 1800000, 3600000} ' 10分鐘,20分鐘,30分鐘,60分鐘
     Dim msg As Rest.RestUserMessage
+    Dim ver As String
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         '取得版本資訊
         If Deployment.Application.ApplicationDeployment.IsNetworkDeployed Then
-            Label4.Text = "Ver：" & Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString()
+            ver = Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString()
+            Label4.Text = "Ver：" & ver
         End If
         '--------------------------------------
 
         '初始化Dsicord-------------------
         Discord = New DiscordSocketClient(New DiscordSocketConfig With {
-                                          .WebSocketProvider = Net.Providers.WS4Net.WS4NetProvider.Instance,
                                           .MessageCacheSize = 20
         })
         '--------------------------------------
@@ -29,11 +30,13 @@ Public Class DGSS
         Button4.Enabled = False
         AddHandler Discord.Ready, AddressOf Ready
 
+        If ver <> My.Settings.lastver Then
 
-        If Not My.Settings.WMessage_ServerList Then
             My.Computer.Audio.PlaySystemSound(Media.SystemSounds.Exclamation)
             MsgBox_ServerList.ShowDialog()
         End If
+
+        My.Settings.lastver = ver
     End Sub
 
     Function Ready() As Task
@@ -58,7 +61,7 @@ Public Class DGSS
 
 
     Private Async Sub StartButton_Click(sender As Object, e As EventArgs) Handles StartButton.Click
-        If My.Settings.token Is "" Then
+        If My.Settings.token Is "" Or My.Settings.dcServerID = 0 Then
             MsgBox("請先設定DiscordBot", 0 + 48)
             Discordsetting.ShowDialog()
             Exit Sub
@@ -307,7 +310,7 @@ Public Class DGSS
                                                 .Timestamp = Date.UtcNow,
                                                 .Footer = New EmbedFooterBuilder With {
                                                 .IconUrl = "https://i.imgur.com/UNPFf1f.jpg",
-                                                .Text = "BOT made by 拉斯哈格(LarsHagrid)"
+                                                .Text = "BOT made by LarsHagrid"
                                                 }
                                                 }
 
@@ -316,14 +319,15 @@ Public Class DGSS
         End Try
 
         Try
-            message = Await Discord.GetGuild(Discord.Guilds(0).Id).GetTextChannel(My.Settings.channel).GetMessageAsync(My.Settings.MessageID)
+            message = Await Discord.GetGuild(My.Settings.dcServerID).GetTextChannel(My.Settings.channel).GetMessageAsync(My.Settings.MessageID)
         Catch ex As Exception
 
         End Try
 
         Try
             If message Is Nothing Then
-                message = Await Discord.GetGuild(Discord.Guilds(0).Id).GetTextChannel(My.Settings.channel).SendMessageAsync("", False, embed)
+                message = Await Discord.GetGuild(My.Settings.dcServerID).GetTextChannel(My.Settings.channel).SendMessageAsync("", False, embed.Build)
+                'message = Await Discord.GetGuild(Discord.Guilds(0).Id).GetTextChannel(My.Settings.channel).SendMessageAsync("", False, embed.Build)
                 My.Settings.MessageID = message.Id
                 My.Settings.Save()
             Else

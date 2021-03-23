@@ -180,6 +180,30 @@ Namespace My
                 Me("showIP") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property dcServerID() As ULong
+            Get
+                Return CType(Me("dcServerID"),ULong)
+            End Get
+            Set
+                Me("dcServerID") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property lastver() As String
+            Get
+                Return CType(Me("lastver"),String)
+            End Get
+            Set
+                Me("lastver") = value
+            End Set
+        End Property
     End Class
 End Namespace
 
