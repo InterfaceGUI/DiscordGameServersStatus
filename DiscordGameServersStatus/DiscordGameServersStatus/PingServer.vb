@@ -44,12 +44,18 @@ Namespace Server.Ping
 
         Public Property MinecraftVersion As String
 
-        Private Sub New(ByVal isonlone As Boolean, ByVal motd As String, ByVal maxplayers As Int64, ByVal playercount As Int64, Version As String)
+        Public Property ErrorMessage As String
+
+        Public Property isError As String
+
+        Private Sub New(ByVal isonlone As Boolean, ByVal motd As String, ByVal maxplayers As Int64, ByVal playercount As Int64, Version As String, Optional isError As Boolean = False, Optional ErrorMessage As String = "")
             Me.IsOnline = isonlone
             Me.ServerMotd = motd
             Me.MaxPlayerCount = maxplayers
             Me.CurrentPlayerCount = playercount
             Me.MinecraftVersion = Version
+            Me.isError = isError
+            Me.ErrorMessage = ErrorMessage
         End Sub
 
         Public Shared Function GetServerInformation(ByVal ip As String, ByVal port As Integer) As MinecraftServerInfo
@@ -82,9 +88,12 @@ Namespace Server.Ping
 
                 '取得MC伺服器 線上狀態
                 If dict("online").ToString = "False" Then
-                    Return New MinecraftServerInfo(False, "", 0, 0, Nothing)
-                ElseIf dict("online").ToString = "True" Then
 
+                    If dict("status").ToString = "error" Then
+                        Return New MinecraftServerInfo(False, "", 0, 0, Nothing, True, dict("error").ToString)
+                    End If
+
+                    Return New MinecraftServerInfo(False, "", 0, 0, Nothing)
                 End If
 
 

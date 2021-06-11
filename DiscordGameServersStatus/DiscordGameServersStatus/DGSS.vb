@@ -128,18 +128,20 @@ Public Class DGSS
                 Catch ex As IndexOutOfRangeException
                     port = Nothing
                 End Try
+                If My.Settings.ServersGame(i) <> "1" Then
+                    Try
 
-                Try
-                    ip = Dns.GetHostByName(ip).AddressList(0).ToString()
-                Catch ex As Exception
-                End Try
+                        ip = Dns.GetHostEntry(ip).AddressList(0).ToString()
 
+                    Catch ex As Exception
+                    End Try
+                End If
 
                 '  ------------------------------其他-----------------------------------
                 If My.Settings.ServersGame(i) = "0" Then
 
                     Try
-                        If port Is Nothing Then port = 0
+                        If port Is Nothing Then port = 80
                         Dim ping As PingServer = PingServer.Ping(ip, port)
 
                         If ping.IsOnline Then
@@ -169,8 +171,9 @@ Public Class DGSS
                 ElseIf My.Settings.ServersGame(i) = "1" Then
 
                     If port Is Nothing Then port = 25565
+
                     Try
-                        Dim ping As MinecraftServerInfo = MinecraftServerInfo.GetServerInformation(My.Settings.Serversip(i).Split(":")(0), port)
+                        Dim ping As MinecraftServerInfo = MinecraftServerInfo.GetServerInformation(ip, port)
                         If ping.IsOnline Then
 
                             If port Is Nothing Then
@@ -182,13 +185,14 @@ Public Class DGSS
                             msg &= "**遊戲版本：**" & ping.MinecraftVersion & vbCrLf & "**人數：**" & ping.CurrentPlayerCount & "/" & ping.MaxPlayerCount & vbCrLf
 
                         Else
-
-                            If port Is Nothing Then
-                                msg = IIf(NShowIP, "", "**伺服器IP：**" & ip) & vbCrLf & "**狀態：**" & online(0) & vbCrLf
+                            If ping.isError Then
+                                If port Is Nothing Then
+                                    msg = IIf(NShowIP, "", "**伺服器IP：**" & ip) & vbCrLf & "**狀態：** " & ":negative_squared_cross_mark:" & "離線或未知錯誤" & vbCrLf & IIf(My.Settings.ShowErrorMsg, "原因:`" & ping.ErrorMessage & "`", "")
+                                Else
+                                    msg = IIf(NShowIP, "", "**伺服器IP：**" & My.Settings.Serversip(i)) & vbCrLf & "**狀態：** " & ":negative_squared_cross_mark:" & "離線或未知錯誤" & vbCrLf & IIf(My.Settings.ShowErrorMsg, "原因:`" & ping.ErrorMessage & "`", "")
+                                End If
                             Else
-                                msg = IIf(NShowIP, "", "**伺服器IP：**" & My.Settings.Serversip(i)) & vbCrLf & "**狀態：**" & online(0) & vbCrLf
                             End If
-
                         End If
                     Catch ex As Exception
 
@@ -247,8 +251,8 @@ Public Class DGSS
 
                 If msg IsNot "" Then
                     EmbedField.Add(New EmbedFieldBuilder With {
-                                       .IsInline = True,
-                                       .Name = ServerName,
+                                       .IsInline = My.Settings.IsInlineMode,
+                                       .Name = ":computer:" & ServerName,
                                        .Value = msg
                                        })
                 End If
@@ -303,14 +307,14 @@ Public Class DGSS
         Dim embed As EmbedBuilder
         Try
             embed = New EmbedBuilder With {
-                                                .Title = "各伺服器狀態",
+                                                .Title = ":scroll:各伺服器狀態",
                                                 .Description = "",
-                                                .Color = New Color(0, 255, 0),
+                                                .Color = My.Settings.Color,
                                                 .Fields = GetServersinfo(),
                                                 .Timestamp = Date.UtcNow,
                                                 .Footer = New EmbedFooterBuilder With {
-                                                .IconUrl = "https://i.imgur.com/UNPFf1f.jpg",
-                                                .Text = "BOT made by LarsHagrid"
+                                                    .IconUrl = "https://i.imgur.com/UNPFf1f.jpg",
+                                                    .Text = "BOT made by LarsHagrid."
                                                 }
                                                 }
 

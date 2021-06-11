@@ -190,7 +190,7 @@ Partial Class DGSS
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.儲存設定檔ToolStripMenuItem, Me.載入設定檔ToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(223, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(220, 24)
         Me.MenuStrip1.TabIndex = 5
         Me.MenuStrip1.Text = "MenuStrip1"
         Me.MenuStrip1.Visible = False

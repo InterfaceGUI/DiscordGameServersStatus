@@ -30,6 +30,10 @@ Partial Class Discordsetting
         Me.Button2 = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
         Me.SuspendLayout()
         '
         'TextBoxToken
@@ -70,7 +74,7 @@ Partial Class Discordsetting
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(447, 62)
+        Me.Button1.Location = New System.Drawing.Point(450, 52)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(103, 41)
         Me.Button1.TabIndex = 2
@@ -79,7 +83,7 @@ Partial Class Discordsetting
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(556, 62)
+        Me.Button2.Location = New System.Drawing.Point(559, 52)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(103, 41)
         Me.Button2.TabIndex = 2
@@ -104,11 +108,49 @@ Partial Class Discordsetting
         Me.Label3.Text = "伺服器ID"
         Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Checked = True
+        Me.CheckBox1.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CheckBox1.Font = New System.Drawing.Font("微軟正黑體", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
+        Me.CheckBox1.Location = New System.Drawing.Point(12, 106)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(137, 28)
+        Me.CheckBox1.TabIndex = 3
+        Me.CheckBox1.Text = "Inline Mode"
+        Me.CheckBox1.UseVisualStyleBackColor = True
+        '
+        'CheckBox2
+        '
+        Me.CheckBox2.AutoSize = True
+        Me.CheckBox2.Font = New System.Drawing.Font("微軟正黑體", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
+        Me.CheckBox2.Location = New System.Drawing.Point(180, 106)
+        Me.CheckBox2.Name = "CheckBox2"
+        Me.CheckBox2.Size = New System.Drawing.Size(212, 28)
+        Me.CheckBox2.TabIndex = 3
+        Me.CheckBox2.Text = "Show Error Message"
+        Me.CheckBox2.UseVisualStyleBackColor = True
+        '
+        'Label4
+        '
+        Me.Label4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label4.Font = New System.Drawing.Font("微軟正黑體", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
+        Me.Label4.Location = New System.Drawing.Point(450, 105)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(212, 28)
+        Me.Label4.TabIndex = 5
+        Me.Label4.Text = "訊息顏色"
+        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'Discordsetting
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(673, 114)
+        Me.ClientSize = New System.Drawing.Size(677, 143)
+        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.CheckBox2)
+        Me.Controls.Add(Me.CheckBox1)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label3)
@@ -134,4 +176,8 @@ Partial Class Discordsetting
     Friend WithEvents Button2 As Button
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents Label3 As Label
+    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents CheckBox2 As CheckBox
+    Friend WithEvents Label4 As Label
+    Friend WithEvents ColorDialog1 As ColorDialog
 End Class
