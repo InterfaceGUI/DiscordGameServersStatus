@@ -23,6 +23,7 @@ Partial Class DGSS
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(DGSS))
         Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
@@ -36,7 +37,6 @@ Partial Class DGSS
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Button6 = New System.Windows.Forms.Button()
         Me.MainTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.UpdataTimer = New System.Windows.Forms.Timer(Me.components)
         Me.Label4 = New System.Windows.Forms.Label()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
@@ -44,6 +44,7 @@ Partial Class DGSS
         Me.載入設定檔ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.GroupBox1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -217,6 +218,11 @@ Partial Class DGSS
         Me.OpenFileDialog1.FileName = "DiscordGameServersStatus.exe.config"
         Me.OpenFileDialog1.Filter = "DiscordGameServersStatus.exe.config|Config"
         '
+        'NotifyIcon1
+        '
+        Me.NotifyIcon1.Icon = CType(resources.GetObject("NotifyIcon1.Icon"), System.Drawing.Icon)
+        Me.NotifyIcon1.Text = "Discord Game Status"
+        '
         'DGSS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 24.0!)
@@ -230,6 +236,7 @@ Partial Class DGSS
         Me.Controls.Add(Me.MenuStrip1)
         Me.Font = New System.Drawing.Font("微軟正黑體", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Margin = New System.Windows.Forms.Padding(6)
         Me.MaximizeBox = False
@@ -254,7 +261,6 @@ Partial Class DGSS
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents Button6 As Button
     Friend WithEvents MainTimer As Timer
-    Friend WithEvents UpdataTimer As Timer
     Friend WithEvents ComboBox1 As ComboBox
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
@@ -264,4 +270,5 @@ Partial Class DGSS
     Friend WithEvents SaveFileDialog1 As SaveFileDialog
     Friend WithEvents 載入設定檔ToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
+    Friend WithEvents NotifyIcon1 As NotifyIcon
 End Class

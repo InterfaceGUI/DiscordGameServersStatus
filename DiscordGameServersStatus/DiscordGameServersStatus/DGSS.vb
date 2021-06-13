@@ -39,6 +39,20 @@ Public Class DGSS
         My.Settings.lastver = ver
     End Sub
 
+    Private Sub DGSS_Resize(sender As Object, e As EventArgs) Handles Me.Resize
+        If sender.WindowState = FormWindowState.Minimized Then
+            Me.Visible = False
+            NotifyIcon1.Visible = True
+            NotifyIcon1.ShowBalloonTip(500, "Discord Game Status", "DGSS正在以最小化執行。" & vbCrLf & "雙擊圖示恢復", ToolTipIcon.Info)
+        End If
+    End Sub
+
+    Private Sub NotifyIcon1_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles NotifyIcon1.MouseDoubleClick
+        NotifyIcon1.Visible = False
+        Me.Visible = True
+        Me.WindowState = FormWindowState.Normal
+    End Sub
+
     Function Ready() As Task
         UpdateShowDialog()
     End Function
@@ -365,4 +379,6 @@ Public Class DGSS
         End If
 
     End Sub
+
+
 End Class
