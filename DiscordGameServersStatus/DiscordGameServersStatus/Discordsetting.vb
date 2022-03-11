@@ -1,5 +1,9 @@
-﻿Public Class Discordsetting
+﻿Imports Discord
+Imports Discord.WebSocket
+
+Public Class Discordsetting
     Private Sub Discordsetting_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         TextboxChannel.Text = My.Settings.channel
         TextBoxToken.Text = My.Settings.token
         TextBox1.Text = My.Settings.dcServerID
@@ -39,4 +43,20 @@
     Private Sub Label4_MouseLeave(sender As Object, e As EventArgs) Handles Label4.MouseLeave
         Cursor = Cursors.Default
     End Sub
+
+    Private Async Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+
+        SelectServer_Channel.ShowDialog()
+        TextboxChannel.Text = My.Settings.channel
+        TextBox1.Text = My.Settings.dcServerID
+
+    End Sub
+
+    Private Sub TextBoxToken_TextChanged(sender As Object, e As EventArgs) Handles TextBoxToken.TextChanged
+        If TextBoxToken.Text.Length > 10 Then
+            Button3.Enabled = True
+        End If
+    End Sub
+
+
 End Class

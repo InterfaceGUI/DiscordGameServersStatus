@@ -45,6 +45,7 @@ Partial Class DGSS
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
+        Me.BackgroundWorker2 = New System.ComponentModel.BackgroundWorker()
         Me.GroupBox1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -145,7 +146,7 @@ Partial Class DGSS
         '
         'Button5
         '
-        Me.Button5.Location = New System.Drawing.Point(323, 44)
+        Me.Button5.Location = New System.Drawing.Point(269, 59)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(98, 51)
         Me.Button5.TabIndex = 2
@@ -223,11 +224,14 @@ Partial Class DGSS
         Me.NotifyIcon1.Icon = CType(resources.GetObject("NotifyIcon1.Icon"), System.Drawing.Icon)
         Me.NotifyIcon1.Text = "Discord Game Status"
         '
+        'BackgroundWorker2
+        '
+        '
         'DGSS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 24.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(220, 341)
+        Me.ClientSize = New System.Drawing.Size(476, 341)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.Button6)
@@ -271,4 +275,5 @@ Partial Class DGSS
     Friend WithEvents 載入設定檔ToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
     Friend WithEvents NotifyIcon1 As NotifyIcon
+    Friend WithEvents BackgroundWorker2 As System.ComponentModel.BackgroundWorker
 End Class

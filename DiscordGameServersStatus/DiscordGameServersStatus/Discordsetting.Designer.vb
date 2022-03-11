@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Discordsetting
     Inherits System.Windows.Forms.Form
 
     'Form 覆寫 Dispose 以清除元件清單。
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class Discordsetting
     '注意: 以下為 Windows Form 設計工具所需的程序
     '可以使用 Windows Form 設計工具進行修改。
     '請勿使用程式碼編輯器進行修改。
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.TextBoxToken = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -34,13 +34,15 @@ Partial Class Discordsetting
         Me.CheckBox2 = New System.Windows.Forms.CheckBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'TextBoxToken
         '
         Me.TextBoxToken.Location = New System.Drawing.Point(109, 9)
         Me.TextBoxToken.Name = "TextBoxToken"
-        Me.TextBoxToken.Size = New System.Drawing.Size(554, 30)
+        Me.TextBoxToken.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+        Me.TextBoxToken.Size = New System.Drawing.Size(460, 30)
         Me.TextBoxToken.TabIndex = 0
         '
         'Label1
@@ -74,18 +76,18 @@ Partial Class Discordsetting
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(450, 52)
+        Me.Button1.Location = New System.Drawing.Point(373, 109)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(103, 41)
+        Me.Button1.Size = New System.Drawing.Size(91, 56)
         Me.Button1.TabIndex = 2
         Me.Button1.Text = "取消"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(559, 52)
+        Me.Button2.Location = New System.Drawing.Point(470, 109)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(103, 41)
+        Me.Button2.Size = New System.Drawing.Size(99, 56)
         Me.Button2.TabIndex = 2
         Me.Button2.Text = "確認"
         Me.Button2.UseVisualStyleBackColor = True
@@ -125,7 +127,7 @@ Partial Class Discordsetting
         '
         Me.CheckBox2.AutoSize = True
         Me.CheckBox2.Font = New System.Drawing.Font("微軟正黑體", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
-        Me.CheckBox2.Location = New System.Drawing.Point(180, 106)
+        Me.CheckBox2.Location = New System.Drawing.Point(155, 106)
         Me.CheckBox2.Name = "CheckBox2"
         Me.CheckBox2.Size = New System.Drawing.Size(212, 28)
         Me.CheckBox2.TabIndex = 3
@@ -136,22 +138,33 @@ Partial Class Discordsetting
         '
         Me.Label4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Label4.Font = New System.Drawing.Font("微軟正黑體", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
-        Me.Label4.Location = New System.Drawing.Point(450, 105)
+        Me.Label4.Location = New System.Drawing.Point(12, 137)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(212, 28)
+        Me.Label4.Size = New System.Drawing.Size(355, 28)
         Me.Label4.TabIndex = 5
         Me.Label4.Text = "訊息顏色"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Button3
+        '
+        Me.Button3.Enabled = False
+        Me.Button3.Location = New System.Drawing.Point(444, 43)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(125, 60)
+        Me.Button3.TabIndex = 2
+        Me.Button3.Text = "取得ID"
+        Me.Button3.UseVisualStyleBackColor = True
         '
         'Discordsetting
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(677, 143)
+        Me.ClientSize = New System.Drawing.Size(581, 177)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.CheckBox2)
         Me.Controls.Add(Me.CheckBox1)
         Me.Controls.Add(Me.Button2)
+        Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.TextBox1)
@@ -180,4 +193,5 @@ Partial Class Discordsetting
     Friend WithEvents CheckBox2 As CheckBox
     Friend WithEvents Label4 As Label
     Friend WithEvents ColorDialog1 As ColorDialog
+    Friend WithEvents Button3 As Button
 End Class
