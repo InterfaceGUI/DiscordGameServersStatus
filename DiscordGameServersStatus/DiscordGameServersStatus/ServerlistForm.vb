@@ -11,7 +11,7 @@ Public Class ServerlistForm
     Dim comboboxGames(10) As ComboBox
     Dim serverCount As Int16 = 0
     Dim CVCcombox As DataGridViewComboBoxColumn
-    Dim GameList As String() = {"其他", "Minecraft", "Source引擎"}
+    Dim GameList As String() = {"其他", "Minecraft", "Source引擎", "Minecraft(Local)"}
 
     Private Sub ServerlistForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.MaximizeBox = False
