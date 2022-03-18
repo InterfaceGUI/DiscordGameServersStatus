@@ -371,6 +371,7 @@ Public Class DGSS
                     End If
 
                 Next
+                retry = False
             Catch ex As Exception
                 MsgBox(ex.Message)
             End Try

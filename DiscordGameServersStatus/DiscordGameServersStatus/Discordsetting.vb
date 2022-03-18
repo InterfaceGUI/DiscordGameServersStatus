@@ -45,7 +45,9 @@ Public Class Discordsetting
     End Sub
 
     Private Async Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-
+        If TextBoxToken.Text = "" Then MsgBox("Token不可留空!")
+        My.Settings.token = TextBoxToken.Text
+        My.Settings.Save()
         SelectServer_Channel.ShowDialog()
         TextboxChannel.Text = My.Settings.channel
         TextBox1.Text = My.Settings.dcServerID
