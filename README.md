@@ -1,4 +1,4 @@
-# DiscordGameServersStatus
+# Discord Game Servers Status
 
 [![GitHub issues](https://img.shields.io/github/issues/InterfaceGUI/DiscordGameServersStatus.svg)](https://github.com/InterfaceGUI/DiscordGameServersStatus/issues)
 [![GitHub releases](https://img.shields.io/github/v/release/InterfaceGUI/DiscordGameServersStatus)](https://github.com/InterfaceGUI/DiscordGameServersStatus/releases)
